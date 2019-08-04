@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% comment %} https://github.com/fullcalendar/fullcalendar/releases/tag/v4.2.0 {% endcomment %}
+
+{% block content %}
+
+{% comment %} {% load staticfiles %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.css" rel='stylesheet' />
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.js" rel='stylesheet' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.css" rel='stylesheet' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.js"></script>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.css" rel='stylesheet' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/interaction/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.css" rel='stylesheet' />
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'dayGrid','timeGrid', 'list','interaction','bootstrap' ],
+      defaultView: 'dayGridMonth',
+      themeSystem:'bootstrap',
+      editable:true,
+      selectable:true,
+      selectHelper:true,
+    eventSources: [
+            {
+                color: '#306EFE',   
+                textColor: '#ffffff',
+                events: [
+                    {
+                        title: 'My Big Event',
+                        start: '2019-08-09',
+                        end: '2019-08-10'
+                    },
+                    {
+                        title: 'My Second Big Event',
+                        start: '2019-08-11',
+                        end: '2019-08-13'
+                    }  
+                 ]
+            }
+    ],
+    
+    header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+   footer: {
+            left: 'prev,next today myCustomButton',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+
+
+      
+    });
+
+    
+
+    calendar.render();
+  });
+
+calendar.on('dateClick', function(info) {
+  console.log('clicked on ' + info.dateStr);
+});
+</script> {% endcomment %}
+
+
+    <h1>Welcome to reservation appartement</h1>
+    {% comment %} <div id='calendar'></div> {% endcomment %}
+
+{% endblock %}

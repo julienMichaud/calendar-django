@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% comment %} https://github.com/fullcalendar/fullcalendar/releases/tag/v4.2.0 {% endcomment %}
+
+{% block content %}
+
+{% load staticfiles %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/main.css" rel='stylesheet' />
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.js" rel='stylesheet' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/daygrid/main.js"></script>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.css" rel='stylesheet' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/timegrid/main.js"></script>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.css" rel='stylesheet' />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/list/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/interaction/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/bootstrap/main.css" rel='stylesheet' />
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      plugins: [ 'dayGrid','timeGrid', 'list','interaction','bootstrap' ],
+      defaultView: 'dayGridMonth',
+      themeSystem:'bootstrap',
+      editable:true,
+      selectable:true,
+      selectHelper:true,
+    header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+
+      
+    });
+
+    
+
+    calendar.render();
+  });
+
+
+</script>
+
+<script>
+
+    $(document).ready(function() {
+
+        $('#calendar').fullCalendar({
+            defaultDate: '2016-07-19',
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            events: [
+                {% for i in events %}
+                {
+                    title: "{{ i.event_name}}",
+                    start: '{{ i.start_date|date:"Y-m-d" }}',
+                    end: '{{ i.end_date|date:"Y-m-d" }}',
+
+                },
+                {% endfor %}
+
+            ]
+        });
+
+    });
+
+</script>
+
+    <h1>Welcome to reservation appartement</h1>
+    <div id='calendar'></div>
+
+{% endblock %}
